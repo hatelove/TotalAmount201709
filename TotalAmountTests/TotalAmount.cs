@@ -34,7 +34,8 @@ namespace TotalAmountTests
                 else
                 {
                     var overlapStart = start > budget.GetStartDate() ? start : budget.GetStartDate();
-                    var daysOfPeriod = (end.AddDays(1) - overlapStart).Days;
+                    var overlapEnd = end < budget.GetEndDate() ? end : budget.GetEndDate();
+                    var daysOfPeriod = (overlapEnd.AddDays(1) - overlapStart).Days;
                     return daysOfPeriod;
                 }
             }

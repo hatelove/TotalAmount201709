@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace TotalAmountTests
 {
@@ -14,16 +13,11 @@ namespace TotalAmountTests
 
         public double Query(string startDate, string endDate)
         {
-            var period = new Period(GetDateFromString(startDate), GetDateFromString(endDate));
+            var period = new Period(startDate, endDate);
 
             return budgetRepo
                 .FindAll()
                 .Sum(b => b.GetOverlappingAmount(period));
-        }
-
-        private DateTime GetDateFromString(string dateInString)
-        {
-            return DateTime.ParseExact(dateInString, "yyyyMMdd", null);
         }
     }
 }

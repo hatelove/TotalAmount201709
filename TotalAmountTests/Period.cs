@@ -10,8 +10,20 @@ namespace TotalAmountTests
             End = end;
         }
 
-        public DateTime Start { get; private set; }
+        public Period(string startDate, string endDate)
+        {
+            Start = GetDateFromString(startDate);
+            End = GetDateFromString(endDate);
+        }
+
         public DateTime End { get; private set; }
+
+        public DateTime Start { get; private set; }
+
+        public DateTime GetDateFromString(string dateInString)
+        {
+            return DateTime.ParseExact(dateInString, "yyyyMMdd", null);
+        }
 
         public int GetOverlappingDays(Period another)
         {

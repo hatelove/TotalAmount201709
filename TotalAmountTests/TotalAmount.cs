@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace TotalAmountTests
 {
@@ -20,8 +21,22 @@ namespace TotalAmountTests
             }
             else
             {
-                return 1;
+                DateTime end = GetDateFromString(endDate);
+                if (end < budget.GetStartDate())
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
             }
+        }
+
+        private DateTime GetDateFromString(string dateInString)
+        {
+            var date = DateTime.ParseExact(dateInString, "yyyyMMdd", null);
+            return date;
         }
     }
 }

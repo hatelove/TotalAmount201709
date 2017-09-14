@@ -18,7 +18,7 @@ namespace TotalAmountTests
 
             var actual = totalAmount.query("20170620", "20170715");
 
-            Assert.AreEqual(150, actual);
+            Assert.AreEqual(0, actual);
         }
     }
 

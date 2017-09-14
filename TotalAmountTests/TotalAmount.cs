@@ -3,6 +3,18 @@ using System.Linq;
 
 namespace TotalAmountTests
 {
+    public class Period
+    {
+        public Period(DateTime start, DateTime end)
+        {
+            Start = start;
+            End = end;
+        }
+
+        public DateTime Start { get; private set; }
+        public DateTime End { get; private set; }
+    }
+
     public class TotalAmount
     {
         private IBudgetRepo budgetRepo;
@@ -23,22 +35,9 @@ namespace TotalAmountTests
             {
                 var start = GetDateFromString(startDate);
                 var end = GetDateFromString(endDate);
+                var period = new Period(start, end);
+                return budget.GetOverlappingAmount(new Period(start, end));
 
-                var isBeforeMonth = end < budget.GetStartDate();
-                var isAfterMonth = start > budget.GetEndDate();
-
-                if (isBeforeMonth || isAfterMonth)
-                {
-                    return 0;
-                }
-                else
-                {
-                    var overlapStart = start > budget.GetStartDate() ? start : budget.GetStartDate();
-                    var overlapEnd = end < budget.GetEndDate() ? end : budget.GetEndDate();
-                    var daysOfPeriod = (overlapEnd.AddDays(1) - overlapStart).Days;
-                    var dailyAmount = budget.Amount / budget.GetEndDate().Day;
-                    return daysOfPeriod * dailyAmount;
-                }
             }
         }
 

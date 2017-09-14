@@ -30,7 +30,8 @@ namespace TotalAmountTests
                 }
                 else
                 {
-                    return 1;
+                    var daysOfPeriod = (GetDateFromString(endDate).AddDays(1) - GetDateFromString(startDate)).Days;
+                    return daysOfPeriod;
                 }
             }
         }

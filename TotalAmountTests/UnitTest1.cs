@@ -43,7 +43,6 @@ namespace TotalAmountTests
         {
             GivenAllBudgets(new Budget { Amount = 31, Month = "201707" });
             EffectiveAmountShouldBe(2, "20170701", "20170702");
-
         }
 
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)

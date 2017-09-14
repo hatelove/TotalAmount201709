@@ -21,12 +21,10 @@ namespace TotalAmountTests
             }
             else
             {
-                DateTime end = GetDateFromString(endDate);
-                if (end < budget.GetStartDate())
-                {
-                    return 0;
-                }
-                else if (GetDateFromString(startDate) > budget.GetEndDate())
+                var isBeforeMonth = GetDateFromString(endDate) < budget.GetStartDate();
+                var isAfterMonth = GetDateFromString(startDate) > budget.GetEndDate();
+
+                if (isBeforeMonth || isAfterMonth)
                 {
                     return 0;
                 }

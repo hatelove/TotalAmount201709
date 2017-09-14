@@ -26,6 +26,10 @@ namespace TotalAmountTests
                 {
                     return 0;
                 }
+                else if (GetDateFromString(startDate) > budget.GetEndDate())
+                {
+                    return 0;
+                }
                 else
                 {
                     return 1;

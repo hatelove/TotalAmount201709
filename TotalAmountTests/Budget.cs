@@ -12,5 +12,12 @@ namespace TotalAmountTests
             var dateInString = this.Month + "01";
             return DateTime.ParseExact(dateInString, "yyyyMMdd", null);
         }
+
+        public DateTime GetEndDate()
+        {
+            var startDate = GetStartDate();
+            var endDay = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+            return new DateTime(startDate.Year, startDate.Month, endDay);
+        }
     }
 }

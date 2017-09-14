@@ -20,7 +20,7 @@ namespace TotalAmountTests
 
         public DateTime Start { get; private set; }
 
-        public DateTime GetDateFromString(string dateInString)
+        private DateTime GetDateFromString(string dateInString)
         {
             return DateTime.ParseExact(dateInString, "yyyyMMdd", null);
         }

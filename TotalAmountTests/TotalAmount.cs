@@ -13,11 +13,9 @@ namespace TotalAmountTests
 
         public double Query(string startDate, string endDate)
         {
-            var period = new Period(startDate, endDate);
-
             return budgetRepo
                 .FindAll()
-                .Sum(b => b.GetOverlappingAmount(period));
+                .Sum(b => b.GetOverlappingAmount(new Period(startDate, endDate)));
         }
     }
 }

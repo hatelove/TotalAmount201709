@@ -58,6 +58,13 @@ namespace TotalAmountTests
             EffectiveAmountShouldBe(1, "20170731", "20170810");
         }
 
+        [TestMethod]
+        public void has_a_budget_dailyAmount_is_10()
+        {
+            GivenAllBudgets(new Budget() {Amount = 310, Month = "201707"});
+            EffectiveAmountShouldBe(20,"20170710", "20170711");
+        }
+
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)
         {
             var totalAmount = new TotalAmount(repo);

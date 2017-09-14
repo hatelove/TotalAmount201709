@@ -35,8 +35,7 @@ namespace TotalAmountTests
 
         private DateTime GetDateFromString(string dateInString)
         {
-            var date = DateTime.ParseExact(dateInString, "yyyyMMdd", null);
-            return date;
+            return DateTime.ParseExact(dateInString, "yyyyMMdd", null);
         }
     }
 }

@@ -31,6 +31,13 @@ namespace TotalAmountTests
             EffectiveAmountShouldBe(0, "20170630", "20170630");
         }
 
+        [TestMethod]
+        public void has_a_budget_period_after_month()
+        {
+            GivenAllBudgets(new Budget {Month = "201707", Amount = 31});
+            EffectiveAmountShouldBe(0, "20170801", "20170801");
+        }
+
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)
         {
             var totalAmount = new TotalAmount(repo);

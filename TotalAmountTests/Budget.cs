@@ -11,15 +11,13 @@ namespace TotalAmountTests
         {
             var periodOfBudget = new Period(this.GetStartDate(), this.GetEndDate());
             var overlappingDays = period.GetOverlappingDays(periodOfBudget);
-            var dailyAmount = this.GetDailyAmount();
 
-            return overlappingDays * dailyAmount;
+            return overlappingDays * this.GetDailyAmount();
         }
 
         private double GetDailyAmount()
         {
-            var dailyAmount = this.Amount / this.GetEndDate().Day;
-            return dailyAmount;
+            return this.Amount / this.GetEndDate().Day;
         }
 
         private DateTime GetEndDate()

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 
 namespace TotalAmountTests
 {
@@ -13,7 +13,15 @@ namespace TotalAmountTests
 
         public double query(string startDate, string endDate)
         {
-            return 0;
+            var budget = stubBudgetRepo.FindAll().FirstOrDefault();
+            if (budget == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }

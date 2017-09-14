@@ -28,7 +28,7 @@ namespace TotalAmountTests
         {
             var totalAmount = new TotalAmount(repo);
 
-            var actual = totalAmount.query(startDate, endDate);
+            var actual = totalAmount.Query(startDate, endDate);
 
             Assert.AreEqual(expected, actual);
         }

@@ -11,7 +11,7 @@ namespace TotalAmountTests
             this.budgetRepo = budgetRepo;
         }
 
-        public double query(string startDate, string endDate)
+        public double Query(string startDate, string endDate)
         {
             var budget = budgetRepo.FindAll().FirstOrDefault();
             if (budget == null)

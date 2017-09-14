@@ -20,14 +20,6 @@ namespace TotalAmountTests
             var overlapEnd = this.End < another.End ? this.End : another.End;
             return (overlapEnd.AddDays(1) - overlapStart).Days;
         }
-
-        public bool HasOverlap(Period another)
-        {
-            var isBeforeMonth = this.End < another.Start;
-            var isAfterMonth = this.Start > another.End;
-
-            return isBeforeMonth || isAfterMonth;
-        }
     }
 
     public class TotalAmount

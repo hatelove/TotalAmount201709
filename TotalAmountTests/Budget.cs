@@ -29,18 +29,10 @@ namespace TotalAmountTests
         public double GetOverlappingAmount(Period period)
         {
             var periodOfBudget = new Period(this.GetStartDate(), this.GetEndDate());
-            var hasOverlap = period.HasOverlap(period);
-            if (hasOverlap)
-            {
-                return 0;
-            }
-            else
-            {
-                var daysOfPeriod = period.GetOverlappingDays(periodOfBudget);
-                var dailyAmount = this.GetDailyAmount();
+            var daysOfPeriod = period.GetOverlappingDays(periodOfBudget);
+            var dailyAmount = this.GetDailyAmount();
 
-                return daysOfPeriod * dailyAmount;
-            }
+            return daysOfPeriod * dailyAmount;
         }
     }
 }

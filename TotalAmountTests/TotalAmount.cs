@@ -33,10 +33,11 @@ namespace TotalAmountTests
         public double Query(string startDate, string endDate)
         {
             var budgets = budgetRepo.FindAll();
+            var period = new Period(GetDateFromString(startDate), GetDateFromString(endDate));
+
             var totalAmount = 0d;
             foreach (var budget in budgets)
             {
-                var period = new Period(GetDateFromString(startDate), GetDateFromString(endDate));
                 totalAmount += budget.GetOverlappingAmount(period);
             }
 

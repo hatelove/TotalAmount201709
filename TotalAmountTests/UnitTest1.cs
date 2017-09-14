@@ -1,48 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using System.Linq;
 
 namespace TotalAmountTests
 {
     [TestClass]
     public class UnitTest1
     {
+        private IBudgetRepo repo = Substitute.For<IBudgetRepo>();
+
         [TestMethod]
         public void no_planned_budgets_AmountShouldBe_0()
         {
-            var stubBudgetRepo = Substitute.For<IBudgetRepo>();
-            stubBudgetRepo.FindAll().Returns(new List<Budget>());
+            GivenAllBudgets();
 
-            var totalAmount = new TotalAmount(stubBudgetRepo);
-
-            var actual = totalAmount.query("20170620", "20170715");
-
-            Assert.AreEqual(0, actual);
-        }
-    }
-
-    public class Budget
-    {
-    }
-
-    public interface IBudgetRepo
-    {
-        List<Budget> FindAll();
-    }
-
-    public class TotalAmount
-    {
-        private IBudgetRepo stubBudgetRepo;
-
-        public TotalAmount(IBudgetRepo stubBudgetRepo)
-        {
-            this.stubBudgetRepo = stubBudgetRepo;
+            EffectiveAmountShouldBe(0, "20170620", "20170715");
         }
 
-        public double query(string startDate, string endDate)
+        private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)
         {
-            throw new NotImplementedException();
+            var totalAmount = new TotalAmount(repo);
+
+            var actual = totalAmount.query(startDate, endDate);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        private void GivenAllBudgets(params Budget[] budgets)
+        {
+            this.repo.FindAll().Returns(budgets.ToList());
         }
     }
 }

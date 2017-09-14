@@ -61,8 +61,17 @@ namespace TotalAmountTests
         [TestMethod]
         public void has_a_budget_dailyAmount_is_10()
         {
-            GivenAllBudgets(new Budget() {Amount = 310, Month = "201707"});
-            EffectiveAmountShouldBe(20,"20170710", "20170711");
+            GivenAllBudgets(new Budget() { Amount = 310, Month = "201707" });
+            EffectiveAmountShouldBe(20, "20170710", "20170711");
+        }
+
+        [TestMethod]
+        public void has_multiple_budgets_with_overlap()
+        {
+            GivenAllBudgets(new Budget { Amount = 310, Month = "201707" },
+                new Budget() { Amount = 31, Month = "201708" });
+
+            EffectiveAmountShouldBe(23, "20170730", "20170803");
         }
 
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)

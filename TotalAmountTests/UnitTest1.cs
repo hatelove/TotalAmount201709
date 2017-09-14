@@ -34,8 +34,16 @@ namespace TotalAmountTests
         [TestMethod]
         public void has_a_budget_period_after_month()
         {
-            GivenAllBudgets(new Budget {Month = "201707", Amount = 31});
+            GivenAllBudgets(new Budget { Month = "201707", Amount = 31 });
             EffectiveAmountShouldBe(0, "20170801", "20170801");
+        }
+
+        [TestMethod]
+        public void has_a_budget_period_has_2_days()
+        {
+            GivenAllBudgets(new Budget { Amount = 31, Month = "201707" });
+            EffectiveAmountShouldBe(2, "20170701", "20170702");
+
         }
 
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)

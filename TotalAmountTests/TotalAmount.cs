@@ -33,10 +33,8 @@ namespace TotalAmountTests
             }
             else
             {
-                var start = GetDateFromString(startDate);
-                var end = GetDateFromString(endDate);
-                var period = new Period(start, end);
-                return budget.GetOverlappingAmount(new Period(start, end));
+                var period = new Period(GetDateFromString(startDate), GetDateFromString(endDate));
+                return budget.GetOverlappingAmount(period);
 
             }
         }

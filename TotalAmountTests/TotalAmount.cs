@@ -4,16 +4,16 @@ namespace TotalAmountTests
 {
     public class TotalAmount
     {
-        private IBudgetRepo stubBudgetRepo;
+        private IBudgetRepo budgetRepo;
 
-        public TotalAmount(IBudgetRepo stubBudgetRepo)
+        public TotalAmount(IBudgetRepo budgetRepo)
         {
-            this.stubBudgetRepo = stubBudgetRepo;
+            this.budgetRepo = budgetRepo;
         }
 
         public double query(string startDate, string endDate)
         {
-            var budget = stubBudgetRepo.FindAll().FirstOrDefault();
+            var budget = budgetRepo.FindAll().FirstOrDefault();
             if (budget == null)
             {
                 return 0;

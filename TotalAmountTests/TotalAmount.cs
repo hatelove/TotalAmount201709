@@ -36,7 +36,8 @@ namespace TotalAmountTests
                     var overlapStart = start > budget.GetStartDate() ? start : budget.GetStartDate();
                     var overlapEnd = end < budget.GetEndDate() ? end : budget.GetEndDate();
                     var daysOfPeriod = (overlapEnd.AddDays(1) - overlapStart).Days;
-                    return daysOfPeriod;
+                    var dailyAmount = budget.Amount / budget.GetEndDate().Day;
+                    return daysOfPeriod * dailyAmount;
                 }
             }
         }

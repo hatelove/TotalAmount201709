@@ -28,35 +28,19 @@ namespace TotalAmountTests
 
         public double GetOverlappingAmount(Period period)
         {
-            var hasOverlap = this.HasOverlap(period);
+            var periodOfBudget = new Period(this.GetStartDate(), this.GetEndDate());
+            var hasOverlap = period.HasOverlap(period);
             if (hasOverlap)
             {
                 return 0;
             }
             else
             {
-                var daysOfPeriod = this.GetOverlappingDays(period);
+                var daysOfPeriod = period.GetOverlappingDays(periodOfBudget);
                 var dailyAmount = this.GetDailyAmount();
 
                 return daysOfPeriod * dailyAmount;
             }
-        }
-
-        private int GetOverlappingDays(Period period)
-        {
-            var overlapStart = period.Start > this.GetStartDate() ? period.Start : this.GetStartDate();
-            var overlapEnd = period.End < this.GetEndDate() ? period.End : this.GetEndDate();
-            var daysOfPeriod = (overlapEnd.AddDays(1) - overlapStart).Days;
-            return daysOfPeriod;
-        }
-
-        public bool HasOverlap(Period period)
-        {
-            var isBeforeMonth = period.End < this.GetStartDate();
-            var isAfterMonth = period.Start > this.GetEndDate();
-
-            var hasOverlap = isBeforeMonth || isAfterMonth;
-            return hasOverlap;
         }
     }
 }

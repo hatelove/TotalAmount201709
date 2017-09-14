@@ -13,6 +13,21 @@ namespace TotalAmountTests
 
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
+
+        public int GetOverlappingDays(Period another)
+        {
+            var overlapStart = this.Start > another.Start ? this.Start : another.Start;
+            var overlapEnd = this.End < another.End ? this.End : another.End;
+            return (overlapEnd.AddDays(1) - overlapStart).Days;
+        }
+
+        public bool HasOverlap(Period another)
+        {
+            var isBeforeMonth = this.End < another.Start;
+            var isAfterMonth = this.Start > another.End;
+
+            return isBeforeMonth || isAfterMonth;
+        }
     }
 
     public class TotalAmount
@@ -35,7 +50,6 @@ namespace TotalAmountTests
             {
                 var period = new Period(GetDateFromString(startDate), GetDateFromString(endDate));
                 return budget.GetOverlappingAmount(period);
-
             }
         }
 

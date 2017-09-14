@@ -51,6 +51,13 @@ namespace TotalAmountTests
             EffectiveAmountShouldBe(1, "20170610", "20170701");
         }
 
+        [TestMethod]
+        public void has_a_budget_period_overlap_back_month()
+        {
+            GivenAllBudgets(new Budget() { Amount = 31, Month = "201707" });
+            EffectiveAmountShouldBe(1, "20170731", "20170810");
+        }
+
         private void EffectiveAmountShouldBe(int expected, string startDate, string endDate)
         {
             var totalAmount = new TotalAmount(repo);

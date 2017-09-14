@@ -21,8 +21,11 @@ namespace TotalAmountTests
             }
             else
             {
-                var isBeforeMonth = GetDateFromString(endDate) < budget.GetStartDate();
-                var isAfterMonth = GetDateFromString(startDate) > budget.GetEndDate();
+                var start = GetDateFromString(startDate);
+                var end = GetDateFromString(endDate);
+
+                var isBeforeMonth = end < budget.GetStartDate();
+                var isAfterMonth = start > budget.GetEndDate();
 
                 if (isBeforeMonth || isAfterMonth)
                 {
@@ -30,7 +33,7 @@ namespace TotalAmountTests
                 }
                 else
                 {
-                    var daysOfPeriod = (GetDateFromString(endDate).AddDays(1) - GetDateFromString(startDate)).Days;
+                    var daysOfPeriod = (end.AddDays(1) - start).Days;
                     return daysOfPeriod;
                 }
             }
